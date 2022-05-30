@@ -74,7 +74,6 @@ def insert_or_update_course(name, created):
     course_count = session.query(Course).filter(Course.name == name).count()
     if course_count > 0:
         return
-
     course = Course(name=name, created=created)
     session.add(course)
     session.commit()
@@ -83,7 +82,7 @@ def insert_or_update_course(name, created):
 
 def insert_or_update_question(course_id, name, created, idx):
     questions = session.query(Question).filter(Question.course_id == course_id)
-    # question = None
+    question = None
     if len(questions) > 0:
         question = questions[idx]
         question.name = name
@@ -97,7 +96,7 @@ def insert_or_update_question(course_id, name, created, idx):
 
 def insert_or_update_answer(question_id, name, created, idx):
     answers = session.query(Answer).filter(Answer.question_id == question_id)
-    # answer = None
+    answer = None
     if len(answers) > 0:
         answer = answers[idx]
         answer.name = name
